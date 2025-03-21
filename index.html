@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Filters North America</title>
+    <script src="https://cdn.jsdelivr.net/gh/julius-altmann-3333/real-estate@main/dropdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julius-altmann-3333/real-estate@main/cityData.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julius-altmann-3333/real-estate@main/realEstate.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julius-altmann-3333/real-estate@main/main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/julius-altmann-3333/real-estate@main/style.css">
+</head>
+<body>
+    <div>
+        <select id="countrySelect">
+            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Barbados">Barbados</option>
+            <option value="Belize">Belize</option>
+            <option value="Canada">Canada</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Dominica">Dominica</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Grenada">Grenada</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Panama">Panama</option>
+            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+            <option value="Saint Lucia">Saint Lucia</option>
+            <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+            <option value="United States">United States</option>
+        </select>
+
+        <select id="citySelect" disabled>
+            <option value="">Select City</option>
+        </select>
+    </div>
+
+<div>
+    <div class="basicFilters_box">
+        <!-- Basic Filters -->
+        <select id="propertyTypeSelect">
+            <option value="">Select Property Type</option>
+            <option value="Apartment">Apartment</option>
+            <option value="House">House</option>
+            <option value="Villa">Villa</option>
+            <option value="Condo">Condo</option>
+        </select>
+
+        <select id="bedroomsSelect">
+            <option value="">Select Bedrooms</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4+</option>
+        </select>
+
+        <select id="bathroomsSelect">
+            <option value="">Select Bathrooms</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3+</option>
+        </select>
+
+        <select id="priceRangeSelect">
+            <option value="">Select Price Range</option>
+            <option value="0-100000">Up to 100,000</option>
+            <option value="100000-200000">100,000 - 200,000</option>
+            <option value="200000-300000">200,000 - 300,000</option>
+            <option value="300000-500000">300,000 - 500,000</option>
+            <option value="500000-1000000">500,000 - 1,000,000</option>
+        </select>
+
+        <select id="squareFeetSelect">
+            <option value="">Select Square Feet</option>
+            <option value="0-1000">Up to 1000 sq ft</option>
+            <option value="1000-2000">1000 - 2000 sq ft</option>
+            <option value="2000-3000">2000 - 3000 sq ft</option>
+            <option value="3000-5000">3000 - 5000 sq ft</option>
+            <option value="5000+">5000+ sq ft</option>
+        </select>
+    </div>
+    <div class="toggleDropdown_box">
+        <button id="toggleDropdown">More Filters</button>
+    </div>
+    
+    <div class="dropdown-content" id="dropdownContent">
+
+        <select id="yearBuiltSelect">
+            <option value="">Year Built</option>
+            <option value="Before 2000">Before 2000</option>
+            <option value="2000-2010">2000 - 2010</option>
+            <option value="2011-2020">2011 - 2020</option>
+            <option value="2021+">2021+</option>
+        </select>
+
+        <select id="parkingSelect">
+            <option value="">Parking Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="gardenSelect">
+            <option value="">Garden</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <select id="flooringSelect">
+            <option value="">Flooring Type</option>
+            <option value="Wood">Wood</option>
+            <option value="Tile">Tile</option>
+            <option value="Carpet">Carpet</option>
+            <option value="Marble">Marble</option>
+        </select>
+
+        <select id="publicTransportSelect">
+            <option value="">Proximity to Public Transport</option>
+            <option value="Close">Close</option>
+            <option value="Far">Far</option>
+        </select>
+
+        <select id="elevatorSelect">
+            <option value="">Elevator Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="furnishingSelect">
+            <option value="">Furnishing Status</option>
+            <option value="Furnished">Furnished</option>
+            <option value="Unfurnished">Unfurnished</option>
+        </select>
+
+        <select id="viewSelect">
+            <option value="">View Type</option>
+            <option value="Sea">Sea</option>
+            <option value="Mountain">Mountain</option>
+            <option value="City">City</option>
+            <option value="Park">Park</option>
+        </select>
+
+        <select id="airConditioningSelect">
+            <option value="">Air Conditioning</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="heatingSelect">
+            <option value="">Heating Type</option>
+            <option value="Central">Central</option>
+            <option value="Individual">Individual</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="poolSelect">
+            <option value="">Pool Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="balconySelect">
+            <option value="">Balcony Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="roofSelect">
+            <option value="">Roof Type</option>
+            <option value="Flat">Flat</option>
+            <option value="Sloped">Sloped</option>
+        </select>
+
+        <select id="securitySelect">
+            <option value="">Security System</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="schoolsSelect">
+            <option value="">Nearby Schools</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <select id="internetSelect">
+            <option value="">Internet Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="gymSelect">
+            <option value="">Gym Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="storageSelect">
+            <option value="">Storage Space</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <select id="shoppingSelect">
+            <option value="">Proximity to Shopping Malls</option>
+            <option value="Close">Close</option>
+            <option value="Far">Far</option>
+        </select>
+
+        <select id="hospitalSelect">
+            <option value="">Nearby Hospitals</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <select id="parkSelect">
+            <option value="">Nearby Parks</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <select id="beachSelect">
+            <option value="">Proximity to Beach</option>
+            <option value="Close">Close</option>
+            <option value="Far">Far</option>
+        </select>
+    </div>
+
+    <div class="button_container">
+        <button id="searchBtn">Search</button>
+        <button id="refreshBtn">Refresh Results</button>
+        <button id="reset">Reset Selections</button>
+    </div>
+</div>
+
+    <!-- Result Container -->
+    <div id="resultContainer">
+        <h3>Selected Properties:</h3>
+        <div id="resultItems"></div>
+    </div>
+</body>
+</html>
