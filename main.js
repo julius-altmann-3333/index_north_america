@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Dropdown Toggle for North America
+    document.getElementById("toggleDropdownNorthAmerica").addEventListener("click", function() {
+        var dropdown_north_america = document.getElementById("dropdownContentNorthAmerica");
+        dropdown_north_america.style.display = (dropdown_north_america.style.display === "none" || dropdown_north_america.style.display === "") ? "block" : "none";
+    });
+
     // Get references to the select elements and other necessary elements
     const countrySelect = document.getElementById("countrySelect");
     const citySelect = document.getElementById("citySelect");
@@ -9,11 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to update city options based on selected country
     function updateCities(country) {
-        // Clear previous city options
         citySelect.innerHTML = '<option value="">Select City</option>';
         
         if (country) {
-            // Enable city selector and populate cities
             citySelect.disabled = false;
             const cities = cityData[country] || [];
             cities.forEach(city => {
@@ -27,48 +31,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listener for country selection
     countrySelect.addEventListener("change", () => {
         const selectedCountry = countrySelect.value;
         updateCities(selectedCountry);
     });
 
-    // Event listener for the reset button
     resetBtn.addEventListener("click", () => {
-        // Reset all select menus
         document.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
         citySelect.disabled = true;
-        resultItems.innerHTML = ''; // Clear previous results
+        resultItems.innerHTML = ''; 
     });
 
-    // Get reference to the refresh button
     const refreshBtn = document.getElementById("refreshBtn");
-
-    // Event listener for the refresh button
     refreshBtn.addEventListener("click", () => {
-        filterResults(); // Call the filterResults function to refresh the displayed results
+        filterResults(); 
     });
 
-
-    // Function to toggle visibility of filter buttons based on selected filters
     function toggleButtonsVisibility() {
         const buttons = document.querySelectorAll('.filter-button');
         buttons.forEach(button => {
             const filterName = button.getAttribute('data-filter');
             const filterValue = document.getElementById(`${filterName}Select`).value;
 
-            // If a filter is selected, show its button
             if (filterValue && filterValue !== "") {
-                button.classList.add('show'); // Show button
+                button.classList.add('show'); 
             } else {
-                button.classList.remove('show'); // Hide button
+                button.classList.remove('show'); 
             }
         });
     }
 
-    // Function to filter real estate data based on selected filters
     function filterResults() {
-        // Get selected values from the filters
         const filters = {
             country: countrySelect.value,
             city: citySelect.value,
@@ -101,49 +94,16 @@ document.addEventListener("DOMContentLoaded", () => {
             beach: document.getElementById("beachSelect").value
         };
 
-        // Filter real estate data based on selected filters
         const filteredResults = realEstateData.filter(property => {
-            return (!filters.country || property.country === filters.country) &&
-                (!filters.city || property.city === filters.city) &&
-                (!filters.propertyType || property.propertyType === filters.propertyType) &&
-                (!filters.bedrooms || property.bedrooms === filters.bedrooms) &&
-                (!filters.bathrooms || property.bathrooms === filters.bathrooms) &&
-                (!filters.priceRange || (property.price >= parseInt(filters.priceRange.split('-')[0]) && property.price <= parseInt(filters.priceRange.split('-')[1]))) &&
-                (!filters.squareFeet || (property.squareFeet >= parseInt(filters.squareFeet.split('-')[0]) && property.squareFeet <= parseInt(filters.squareFeet.split('-')[1]))) &&
-                (!filters.yearBuilt || property.yearBuilt === filters.yearBuilt) &&
-                (!filters.parking || property.parking === filters.parking) &&
-                (!filters.garden || property.garden === filters.garden) &&
-                (!filters.flooring || property.flooring === filters.flooring) &&
-                (!filters.publicTransport || property.publicTransport === filters.publicTransport) &&
-                (!filters.elevator || property.elevator === filters.elevator) &&
-                (!filters.furnishing || property.furnishing === filters.furnishing) &&
-                (!filters.view || property.view === filters.view) &&
-                (!filters.airConditioning || property.airConditioning === filters.airConditioning) &&
-                (!filters.heating || property.heating === filters.heating) &&
-                (!filters.pool || property.pool === filters.pool) &&
-                (!filters.balcony || property.balcony === filters.balcony) &&
-                (!filters.roof || property.roof === filters.roof) &&
-                (!filters.security || property.security === filters.security) &&
-                (!filters.schools || property.schools === filters.schools) &&
-                (!filters.internet || property.internet === filters.internet) &&
-                (!filters.gym || property.gym === filters.gym) &&
-                (!filters.storage || property.storage === filters.storage) &&
-                (!filters.shopping || property.shopping === filters.shopping) &&
-                (!filters.hospital || property.hospital === filters.hospital) &&
-                (!filters.park || property.park === filters.park) &&
-                (!filters.beach || property.beach === filters.beach);
+            return Object.keys(filters).every(key => !filters[key] || property[key] === filters[key]);
         });
 
-        // Display filtered results
         displayResults(filteredResults);
-
-        // After displaying results, call toggleButtonsVisibility to show the relevant filter buttons
         toggleButtonsVisibility();
     }
 
-    // Function to display the filtered results
     function displayResults(results) {
-        resultItems.innerHTML = ''; // Clear previous results
+        resultItems.innerHTML = '';
         if (results.length > 0) {
             results.forEach(property => {
                 const resultItem = document.createElement('div');
@@ -160,29 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>Bedrooms: ${property.bedrooms}</p>
                         <p>Bathrooms: ${property.bathrooms}</p>
                         <p>Size: ${property.squareFeet} sq ft</p>
-                        <button class="filter-button" data-filter="internet">Internet: ${property.internet}</button>
-                        <button class="filter-button" data-filter="parking">Parking: ${property.parking}</button>
-                        <button class="filter-button" data-filter="garden">Garden: ${property.garden}</button>
-                        <button class="filter-button" data-filter="parking">Parking Availability: ${property.parking}</button>
-                        <button class="filter-button" data-filter="garden">Garden: ${property.garden}</button>
-                        <button class="filter-button" data-filter="flooring">Flooring Type: ${property.flooring}</button>
-                        <button class="filter-button" data-filter="publicTransport">Proximity to Public Transport: ${property.publicTransport}</button>
-                        <button class="filter-button" data-filter="elevator">Elevator Availability: ${property.elevator}</button>
-                        <button class="filter-button" data-filter="furnishing">Furnishing Status: ${property.furnishing}</button>
-                        <button class="filter-button" data-filter="view">View Type: ${property.view}</button>
-                        <button class="filter-button" data-filter="airConditioning">Air Conditioning: ${property.airConditioning}</button>
-                        <button class="filter-button" data-filter="heating">Heating Type: ${property.heating}</button>
-                        <button class="filter-button" data-filter="pool">Pool Availability: ${property.pool}</button>
-                        <button class="filter-button" data-filter="balcony">Balcony Availability: ${property.balcony}</button>
-                        <button class="filter-button" data-filter="roof">Roof Type: ${property.roof}</button>
-                        <button class="filter-button" data-filter="security">Security System: ${property.security}</button>
-                        <button class="filter-button" data-filter="schools">Nearby Schools: ${property.schools}</button>
-                        <button class="filter-button" data-filter="gym">Gym Availability: ${property.gym}</button>
-                        <button class="filter-button" data-filter="storage">Storage Space: ${property.storage}</button>
-                        <button class="filter-button" data-filter="shopping">Proximity to Shopping Malls: ${property.shopping}</button>
-                        <button class="filter-button" data-filter="hospital">Nearby Hospitals: ${property.hospital}</button>
-                        <button class="filter-button" data-filter="park">Nearby Parks: ${property.park}</button>
-                        <button class="filter-button" data-filter="beach">Proximity to Beach: ${property.beach}</button>
                     </div>
                 `;
                 resultItems.appendChild(resultItem);
@@ -192,6 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listener for the search button
     searchBtn.addEventListener("click", filterResults);
 });
